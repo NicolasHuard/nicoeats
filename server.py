@@ -7,7 +7,7 @@ Env vars:
   DATA_DIR           where the database and uploaded photos live (default ./data)
   PORT               default 8000
 """
-import base64, hashlib, hmac, json, mimetypes, os, re, secrets, sqlite3, sys, time
+import base64, hashlib, hmac, json, mimetypes, os, re, secrets, sqlite3, sys, threading, time
 from http.cookies import SimpleCookie
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -41,8 +41,25 @@ CRITERIA = {
 }
 MAX_BODY = 12 * 1024 * 1024
 
-db = sqlite3.connect(DATA / "nicoeats.db", check_same_thread=False, isolation_level=None)
-db.row_factory = sqlite3.Row
+_local = threading.local()
+
+
+def _conn():
+    # One SQLite connection per thread; sharing one across threads can crash.
+    if not hasattr(_local, "c"):
+        c = sqlite3.connect(DATA / "nicoeats.db", isolation_level=None, timeout=15)
+        c.row_factory = sqlite3.Row
+        c.execute("PRAGMA journal_mode=WAL")
+        _local.c = c
+    return _local.c
+
+
+class _DB:
+    def __getattr__(self, name):
+        return getattr(_conn(), name)
+
+
+db = _DB()
 db.executescript("""
 CREATE TABLE IF NOT EXISTS reviews (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
