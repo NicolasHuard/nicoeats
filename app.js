@@ -2,40 +2,36 @@
 const CATS = {
   natas: {
     title: "Natas", short: "Pastéis de nata", num: "01",
-    lede: "The custard tart, judged like it owes us money.",
+    lede: "Arguably my favorite snack",
     criteria: {
-      custard: ["Custard", "Silky, eggy, just set. Never rubbery, never soup."],
-      blister: ["Blister", "The scorched, caramelized leopard-spots on top."],
-      pastry: ["Pastry", "Shatter and flake. A soggy base is a crime scene."],
-      value: ["Value", "What you paid vs. what you got."],
-      vibes: ["Vibes", "Room, counter, service. Would you go back on a Tuesday?"],
+      custard: ["Custard"],
+      pastry: ["Pastry"],
+      value: ["Value"],
     },
   },
   "carrot-cake": {
     title: "Carrot Cake", short: "Carrot cake", num: "02",
-    lede: "The great underrated slice. Spice, tang, and moisture, or nothing.",
+    lede: "I just love a good slice",
     criteria: {
-      crumb: ["Crumb", "Tender, moist, actual carrot. No dry sponge."],
-      spice: ["Spice", "Cinnamon with depth, not just sweetness with a hat on."],
-      frosting: ["Frosting", "Cream cheese tang, the right ratio, no sugar grit."],
-      value: ["Value", "Slice size against the price on the chalkboard."],
-      vibes: ["Vibes", "Where you eat it matters. Coffee pairing counts."],
+      crumb: ["Crumb"],
+      frosting: ["Frosting"],
+      value: ["Value"],
     },
   },
   poutine: {
     title: "Poutine", short: "Poutine", num: "03",
-    lede: "A joint investigation. Two people, one fork each, no mercy.",
+    lede: "A weekly necessity",
     criteria: {
-      fries: ["Fries", "Crisp under sauce, still standing at minute ten."],
-      curds: ["Curds", "Fresh, squeaky, half-melted. Shredded mozzarella is disqualifying."],
-      gravy: ["Gravy", "Peppery, hot, coating not drowning."],
-      value: ["Value", "Portion and price. Honest arithmetic."],
-      vibes: ["Vibes", "The 2 a.m. factor, whatever the hour."],
+      fries: ["Fries"],
+      curds: ["Curds"],
+      gravy: ["Gravy"],
+      value: ["Value"],
+      grease: ["Grease", "You need the grease sometimes"],
     },
   },
 };
 const CAT_KEYS = Object.keys(CATS);
-const TICKER = ["Natas", "Carrot Cake", "Poutine", "Montréal", "Little Portugal", "Le Plateau", "Unsponsored", "Reviewed properly"];
+const TICKER = ["Natas", "Carrot Cake", "Poutine", "BBQ coming wallahi", "Cafés"];
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -112,7 +108,7 @@ function markNav(route) {
 /* ---------- views ---------- */
 function viewHome() {
   const all = published();
-  const quests = CAT_KEYS.map((k, i) => {
+  const  = CAT_KEYS.map((k, i) => {
     const list = byCat(k);
     const avg = list.length ? list.reduce((a, r) => a + r.overall, 0) / list.length : null;
     return `<a class="quest" href="#/${k}" data-c="${k}">
@@ -139,8 +135,8 @@ function viewHome() {
       </div>
     </section>
     <div class="wrap">
-      <section class="sec"><div class="sec-head"><h2>The three quests</h2><span class="mono">Same rubric. Every time.</span></div>
-        <div class="quests">${quests}</div></section>
+      <section class="sec"><div class="sec-head"><h2>The three </h2><span class="mono">Send Recs</span></div>
+        <div class="">${}</div></section>
       <section class="sec"><div class="sec-head"><h2>Fresh out the oven</h2><span class="mono">${all.length} review${all.length === 1 ? "" : "s"} so far</span></div>
         ${latest.length ? `<div class="grid">${latest.map(card).join("")}</div>` : empty("Nothing yet.", "The tasting notes are still warm. First reviews land soon.")}</section>
       ${socials.length ? `<section class="sec"><div class="sec-head"><h2>Follow along</h2><span class="mono">Videos, bakes, bad decisions</span></div>
@@ -166,7 +162,7 @@ function viewCat(k) {
           ${stamp(r.overall, "sm")}</a></li>`).join("")}</ol>` : empty("Empty tray.", "No " + C.short.toLowerCase() + " reviewed yet.")}
       </div>
       <aside class="rubric" data-c="${k}"><h3>How we score</h3><dl>${rubric}</dl>
-        <p>Every criterion is scored 0–10 in half points. The overall score is the plain average. No hidden weights, no mercy.</p></aside>
+        <p>Every criterion is scored 0–10 in half points. The overall score is the plain average.</p></aside>
     </div></section>
     <section class="sec"><div class="sec-head"><h2>Where to find them</h2></div><div class="map" id="map"></div></section></div>`;
   drawMap($("#map"), list);
