@@ -1,0 +1,19 @@
+# One-click deploy on Render (https://render.com). Needs the paid "Starter" plan for the persistent disk.
+services:
+  - type: web
+    name: nicoeats
+    runtime: python
+    plan: starter
+    buildCommand: "echo no build step"
+    startCommand: python3 server.py
+    envVars:
+      - key: NICOEATS_PASSWORD
+        sync: false        # you'll be asked to type this in the Render dashboard
+      - key: DATA_DIR
+        value: /var/data
+      - key: PYTHON_VERSION
+        value: 3.12.4
+    disk:
+      name: nicoeats-data
+      mountPath: /var/data
+      sizeGB: 1
