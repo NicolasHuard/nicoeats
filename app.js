@@ -108,7 +108,7 @@ function markNav(route) {
 /* ---------- views ---------- */
 function viewHome() {
   const all = published();
-  const  = CAT_KEYS.map((k, i) => {
+  const quests = CAT_KEYS.map((k, i) => {
     const list = byCat(k);
     const avg = list.length ? list.reduce((a, r) => a + r.overall, 0) / list.length : null;
     return `<a class="quest" href="#/${k}" data-c="${k}">
@@ -135,8 +135,8 @@ function viewHome() {
       </div>
     </section>
     <div class="wrap">
-      <section class="sec"><div class="sec-head"><h2>The three </h2><span class="mono">Send Recs</span></div>
-        <div class="">${}</div></section>
+      <section class="sec"><div class="sec-head"><h2>The three quests</h2><span class="mono">Send Recs</span></div>
+        <div class="quests">${quests}</div></section>
       <section class="sec"><div class="sec-head"><h2>Fresh out the oven</h2><span class="mono">${all.length} review${all.length === 1 ? "" : "s"} so far</span></div>
         ${latest.length ? `<div class="grid">${latest.map(card).join("")}</div>` : empty("Nothing yet.", "The tasting notes are still warm. First reviews land soon.")}</section>
       ${socials.length ? `<section class="sec"><div class="sec-head"><h2>Follow along</h2><span class="mono">Videos, bakes, bad decisions</span></div>
@@ -147,7 +147,7 @@ function viewHome() {
 function viewCat(k) {
   const C = CATS[k];
   const list = byCat(k);
-  const rubric = Object.values(C.criteria).map(([t, d]) => `<dt>${t}</dt><dd>${d}</dd>`).join("");
+  const rubric = Object.values(C.criteria).map(([t, d]) => `<dt>${t}</dt>${d ? `<dd>${d}</dd>` : ""}`).join("");
   app.innerHTML = `
     <section class="cat-hero" data-c="${k}"><div class="blob"></div>
       <div class="mono">Quest ${C.num} · ${list.length} ranked</div>
