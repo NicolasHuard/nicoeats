@@ -56,7 +56,7 @@ main { min-height: 70vh; outline: none; }
 
 /* HERO */
 .hero { position: relative; padding: clamp(36px, 7vw, 90px) var(--gut) clamp(30px, 5vw, 60px); overflow: hidden; }
-.mast { margin: 0; font-weight: 800; font-stretch: 75%; text-transform: uppercase; line-height: .78; letter-spacing: -.045em; font-size: clamp(5.2rem, 27vw, 24rem); position: relative; z-index: 2; }
+.mast { margin: 0; font-weight: 800; font-stretch: 75%; text-transform: uppercase; line-height: .78; letter-spacing: -.012em; font-size: clamp(5.2rem, 27vw, 24rem); position: relative; z-index: 2; }
 .mast span { display: block; mix-blend-mode: multiply; }
 .mast .a { color: var(--pink); transform: translate(-.01em, 0) rotate(-1.2deg); transform-origin: left; }
 .mast .b { color: var(--blue); margin-left: 0.18em; margin-top: -.06em; transform: rotate(-1.2deg); }
