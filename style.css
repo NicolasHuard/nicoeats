@@ -1,13 +1,14 @@
 /* NICOEATS — risograph print stylesheet
-   Inks: fluorescent pink, riso blue, sunflower, orange. Paper: warm newsprint. */
+   Inks: dusty rose, slate teal, butter, apricot. Paper: warm newsprint. */
 :root {
-  --paper: #f1ebdb;
-  --paper-2: #e8e0cb;
-  --ink: #1c1b3a;
-  --pink: #ff48b0;
-  --blue: #0078bf;
-  --yellow: #ffd60a;
-  --orange: #ff6c2f;
+  --paper: #f3eee3;
+  --paper-2: #e9e2d2;
+  --ink: #2a2f38;
+  --pink: #d98c86;
+  --stamp: #b4574f;
+  --blue: #5b8593;
+  --yellow: #e8cb7e;
+  --orange: #dc9a6d;
   --cat-natas: var(--yellow);
   --cat-carrot-cake: var(--orange);
   --cat-poutine: var(--blue);
@@ -25,7 +26,7 @@ body {
 }
 /* paper grain, printed over everything */
 body::after {
-  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: .5; mix-blend-mode: multiply;
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: .4; mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35  0 0 0 0 .3  0 0 0 0 .2  0 0 0 .55 -.15'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 a { color: inherit; }
@@ -111,7 +112,7 @@ main { min-height: 70vh; outline: none; }
 [data-c="poutine"] { --c: var(--cat-poutine); }
 
 /* STAMP score */
-.stamp { display: inline-grid; place-content: center; text-align: center; width: 86px; height: 86px; border-radius: 50%; color: var(--pink); border: 4px solid var(--pink); transform: rotate(-9deg); filter: url(#rough); mix-blend-mode: multiply; background: rgba(255,72,176,.08); line-height: 1; font-family: var(--display); }
+.stamp { display: inline-grid; place-content: center; text-align: center; width: 86px; height: 86px; border-radius: 50%; color: var(--stamp); border: 4px solid var(--stamp); transform: rotate(-9deg); filter: url(#rough); mix-blend-mode: multiply; background: rgba(180,87,79,.07); line-height: 1; font-family: var(--display); }
 .stamp b { font-size: 2rem; font-weight: 800; font-stretch: 75%; letter-spacing: -.03em; }
 .stamp i { font: 700 8px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; font-style: normal; margin-top: 3px; }
 .stamp.xl { width: 170px; height: 170px; border-width: 6px; }
@@ -195,7 +196,7 @@ main { min-height: 70vh; outline: none; }
 .btn.pink { background: var(--pink); }
 .btn.blue { background: var(--blue); color: var(--paper); }
 .btn.ghost { box-shadow: none; }
-.btn.danger { background: var(--paper); color: #b00020; border-color: #b00020; box-shadow: 5px 5px 0 #b00020; }
+.btn.danger { background: var(--paper); color: #a3403a; border-color: #a3403a; box-shadow: 5px 5px 0 #a3403a; }
 
 /* empty */
 .empty { border: 2px dashed var(--ink); padding: 48px 24px; text-align: center; }
@@ -220,7 +221,7 @@ main { min-height: 70vh; outline: none; }
 .form input[type=text], .form input[type=password], .form input[type=date], .form input[type=number], .form select, .form textarea {
   width: 100%; font: 400 17px/1.3 var(--display); color: var(--ink); background: transparent; border: 2px solid var(--ink); padding: 11px 12px; border-radius: 0; }
 .form textarea { min-height: 160px; resize: vertical; line-height: 1.5; }
-.form input:focus, .form select:focus, .form textarea:focus { outline: none; background: rgba(255,214,10,.3); box-shadow: 4px 4px 0 var(--ink); }
+.form input:focus, .form select:focus, .form textarea:focus { outline: none; background: rgba(232,203,126,.35); box-shadow: 4px 4px 0 var(--ink); }
 .sliders { border: 2px solid var(--ink); padding: 18px; display: grid; gap: 16px; position: relative; }
 .slider { display: grid; grid-template-columns: 110px 1fr 46px; gap: 14px; align-items: center; }
 .slider input[type=range] { width: 100%; accent-color: var(--pink); }
@@ -233,7 +234,7 @@ main { min-height: 70vh; outline: none; }
 .tag { display: inline-block; font: 700 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; padding: 5px 7px; background: var(--c, var(--paper-2)); border: 2px solid var(--ink); margin-right: 6px; }
 .tag.draft { background: var(--pink); }
 .msg { font: 700 13px/1.3 var(--mono); padding: 10px 12px; border: 2px solid var(--ink); background: var(--yellow); margin: 14px 0; }
-.msg.err { background: #ffd0d8; border-color: #b00020; color: #b00020; }
+.msg.err { background: #f3d6d2; border-color: #a3403a; color: #a3403a; }
 .upl { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
 .upl img { width: 110px; height: 110px; object-fit: cover; border: 2px solid var(--ink); }
 .login { max-width: 460px; margin: clamp(30px, 8vw, 100px) auto; padding: 0 var(--gut); }
