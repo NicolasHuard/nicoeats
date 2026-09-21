@@ -139,7 +139,7 @@ function viewHome() {
         <div class="quests">${quests}</div></section>
       <section class="sec"><div class="sec-head"><h2>Fresh out the oven</h2><span class="mono">${all.length} review${all.length === 1 ? "" : "s"} so far</span></div>
         ${latest.length ? `<div class="grid">${latest.map(card).join("")}</div>` : empty("Nothing yet.", "The tasting notes are still warm. First reviews land soon.")}</section>
-      ${socials.length ? `<section class="sec"><div class="sec-head"><h2>Follow along</h2><span class="mono">Videos, bakes, bad decisions</span></div>
+      ${socials.length ? `<section class="sec"><div class="sec-head"><h2>Follow along</h2><span class="mono">Videos, bakes, reviews</span></div>
         <div class="social-links">${socials.map(([k, n, b]) => `<a href="${esc(linkFor(s[k], b))}" target="_blank" rel="noopener">${n} ↗</a>`).join("")}</div></section>` : ""}
     </div>`;
 }
