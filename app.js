@@ -215,7 +215,7 @@ function drawMap(el, list) {
   const pts = list.filter((r) => r.lat != null && r.lng != null);
   mapObj = L.map(el, { scrollWheelZoom: false }).setView([45.5185, -73.5850], 13);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', maxZoom: 19 }).addTo(mapObj);
-  const colors = { natas: "#ffd60a", "carrot-cake": "#ff6c2f", poutine: "#0078bf" };
+  const colors = { natas: "#e8cb7e", "carrot-cake": "#dc9a6d", poutine: "#5b8593" };
   pts.forEach((r) => {
     const icon = L.divIcon({ className: "", iconSize: [38, 38], iconAnchor: [19, 19], html: `<div class="pin" style="--c:${colors[r.category]};${r.category === "poutine" ? "color:#f1ebdb" : ""}">${fmt(r.overall)}</div>` });
     const m = L.marker([r.lat, r.lng], { icon }).addTo(mapObj);
